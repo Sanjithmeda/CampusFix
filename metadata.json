@@ -1,0 +1,10 @@
+{
+  "name": "CampusFix — Intelligent Maintenance System",
+  "description": "Intelligent campus maintenance prioritization and resolution management system with role-based access for students, faculty, maintenance teams, and administrators.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

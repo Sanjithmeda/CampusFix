@@ -1,0 +1,204 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User account information, institutional ID, and assigned operational role",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string" },
+        "fullName": { "type": "string", "maxLength": 100 },
+        "role": { "type": "string", "enum": ["student", "faculty", "maintenance", "admin"] },
+        "idNumber": { "type": "string", "maxLength": 50 },
+        "department": { "type": "string", "maxLength": 80 },
+        "status": { "type": "string", "enum": ["active", "pending_approval", "rejected", "suspended"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "email", "fullName", "role", "status", "createdAt"]
+    },
+    "AdminRecord": {
+      "title": "AdminRecord",
+      "description": "Whitelist record verifying authorized campus administrators",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string" },
+        "addedAt": { "type": "string" }
+      },
+      "required": ["id", "email"]
+    },
+    "Complaint": {
+      "title": "Complaint",
+      "description": "Maintenance work order and issue report with intelligent prioritization",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "complaintNumber": { "type": "string" },
+        "title": { "type": "string", "maxLength": 160 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "reporterId": { "type": "string" },
+        "reporterName": { "type": "string", "maxLength": 100 },
+        "reporterEmail": { "type": "string" },
+        "reporterRole": { "type": "string", "enum": ["student", "faculty", "maintenance", "admin"] },
+        "campusArea": { "type": "string", "maxLength": 80 },
+        "specificLocation": { "type": "string", "maxLength": 150 },
+        "category": { "type": "string", "maxLength": 80 },
+        "severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+        "priority": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+        "priorityScore": { "type": "number" },
+        "priorityReason": { "type": "string", "maxLength": 300 },
+        "affectedPeople": { "type": "number" },
+        "isWaterIssue": { "type": "boolean" },
+        "waterIssueType": { "type": "string" },
+        "suspectedContamination": { "type": "boolean" },
+        "status": { "type": "string", "enum": ["submitted", "under_review", "assigned", "in_progress", "resolved", "closed", "reopened", "cancelled"] },
+        "assignedTeamId": { "type": "string" },
+        "assignedTeamName": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" },
+        "dueDate": { "type": "string" },
+        "isOverdue": { "type": "boolean" },
+        "linkedComplaintIds": { "type": "array" }
+      },
+      "required": ["id", "complaintNumber", "title", "description", "reporterId", "campusArea", "specificLocation", "category", "severity", "priority", "status", "createdAt"]
+    },
+    "ComplaintActivity": {
+      "title": "ComplaintActivity",
+      "description": "Immutable audit log trail for complaint lifecycle changes",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "complaintId": { "type": "string" },
+        "action": { "type": "string" },
+        "previousStatus": { "type": "string" },
+        "newStatus": { "type": "string" },
+        "performedBy": { "type": "string" },
+        "performedByName": { "type": "string" },
+        "performedByRole": { "type": "string" },
+        "note": { "type": "string", "maxLength": 500 },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["id", "complaintId", "action", "performedBy", "timestamp"]
+    },
+    "Announcement": {
+      "title": "Announcement",
+      "description": "Scheduled and ongoing campus maintenance broadcast with affected areas",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string", "maxLength": 160 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "affectedArea": { "type": "string", "maxLength": 100 },
+        "startTime": { "type": "string" },
+        "expectedCompletion": { "type": "string" },
+        "status": { "type": "string", "enum": ["planned", "in_progress", "completed", "delayed"] },
+        "alternateRoute": { "type": "string", "maxLength": 300 },
+        "publishedBy": { "type": "string" },
+        "publishedByName": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "title", "affectedArea", "startTime", "expectedCompletion", "status", "publishedBy", "createdAt"]
+    },
+    "CampusArea": {
+      "title": "CampusArea",
+      "description": "Campus physical zone or building facility record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 80 },
+        "buildingCode": { "type": "string", "maxLength": 20 },
+        "description": { "type": "string", "maxLength": 250 },
+        "highPriorityZone": { "type": "boolean" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["id", "name", "buildingCode", "isActive"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Maintenance issue classification and default handling rules",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 80 },
+        "code": { "type": "string", "maxLength": 30 },
+        "defaultTeam": { "type": "string" },
+        "description": { "type": "string" },
+        "baseSeverity": { "type": "string" }
+      },
+      "required": ["id", "name", "code"]
+    },
+    "MaintenanceTeam": {
+      "title": "MaintenanceTeam",
+      "description": "Designated campus maintenance crew or contractor group",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 80 },
+        "specialty": { "type": "string", "maxLength": 80 },
+        "leadName": { "type": "string", "maxLength": 80 },
+        "leadEmail": { "type": "string" },
+        "contactPhone": { "type": "string" },
+        "memberCount": { "type": "number" },
+        "activeCases": { "type": "number" }
+      },
+      "required": ["id", "name", "specialty", "leadName"]
+    },
+    "NotificationItem": {
+      "title": "NotificationItem",
+      "description": "In-app notification for updates, assignments, and campus alerts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string", "maxLength": 150 },
+        "message": { "type": "string", "maxLength": 500 },
+        "type": { "type": "string" },
+        "relatedComplaintId": { "type": "string" },
+        "isRead": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "message", "isRead", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles and institutional roles"
+    },
+    "/admins/{adminId}": {
+      "schema": "AdminRecord",
+      "description": "Whitelisted administrator accounts"
+    },
+    "/complaints/{complaintId}": {
+      "schema": "Complaint",
+      "description": "Campus maintenance complaint tickets"
+    },
+    "/complaints/{complaintId}/history/{activityId}": {
+      "schema": "ComplaintActivity",
+      "description": "Audit trail log of changes made to a complaint"
+    },
+    "/announcements/{announcementId}": {
+      "schema": "Announcement",
+      "description": "Campus-wide maintenance notifications and schedules"
+    },
+    "/campus_areas/{areaId}": {
+      "schema": "CampusArea",
+      "description": "Configurable campus locations and facilities"
+    },
+    "/categories/{categoryId}": {
+      "schema": "Category",
+      "description": "Configurable maintenance categories"
+    },
+    "/maintenance_teams/{teamId}": {
+      "schema": "MaintenanceTeam",
+      "description": "Maintenance teams and workloads"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "NotificationItem",
+      "description": "In-app notifications for users"
+    }
+  }
+}
