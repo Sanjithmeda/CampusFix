@@ -16,6 +16,7 @@ import {
 import { useAuth, DEMO_PROFILES } from '../../context/AuthContext';
 import { NotificationItem, UserRole } from '../../types';
 import { getUserNotifications, markNotificationAsRead, markAllNotificationsAsRead } from '../../services/notificationService';
+import { CampusFixLogo } from '../common/CampusFixLogo';
 
 interface NavbarProps {
   onSelectComplaint?: (complaintId: string) => void;
@@ -128,17 +129,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onSelectComplaint, onOpenMobileM
             </button>
 
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-xs shadow-indigo-600/30">
-                <Wrench className="w-4 h-4 text-white" />
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-lg font-bold tracking-tight text-slate-900">
-                  CampusFix
-                </span>
-                <span className="hidden sm:inline-block text-[11px] font-medium text-indigo-700 bg-indigo-50 border border-indigo-200/60 px-2 py-0.5 rounded-md">
-                  Institutional Suite
-                </span>
-              </div>
+              <CampusFixLogo variant="horizontal" size="md" />
+              <span className="hidden sm:inline-block text-[11px] font-medium text-sky-700 bg-sky-50 border border-sky-200/60 px-2 py-0.5 rounded-md">
+                Institutional Suite
+              </span>
             </div>
           </div>
 

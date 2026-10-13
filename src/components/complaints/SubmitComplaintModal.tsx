@@ -19,6 +19,7 @@ import { createComplaint } from '../../services/complaintService';
 import { useAuth } from '../../context/AuthContext';
 import { PriorityBadge } from '../common/StatusBadge';
 import { CameraCapture } from '../common/CameraCapture';
+import { CampusFixIcon } from '../common/CampusFixLogo';
 
 interface SubmitComplaintModalProps {
   isOpen: boolean;
@@ -194,10 +195,8 @@ export const SubmitComplaintModal: React.FC<SubmitComplaintModalProps> = ({
       <div className="bg-white rounded-2xl max-w-2xl w-full shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[92vh]">
         {/* Modal Header */}
         <div className="px-6 py-4 bg-white border-b border-slate-200 flex items-center justify-between text-slate-900">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-200/80 flex items-center justify-center text-indigo-600">
-              <Tag className="w-4 h-4" />
-            </div>
+          <div className="flex items-center gap-3">
+            <CampusFixIcon sizePx={32} />
             <div>
               <h2 className="text-base font-bold text-slate-900">Report Campus Facility Complaint</h2>
               <p className="text-[11px] text-slate-500">

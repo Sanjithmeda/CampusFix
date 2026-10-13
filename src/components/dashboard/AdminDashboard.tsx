@@ -35,6 +35,7 @@ import {
 } from '../../types';
 import { StatusBadge, PriorityBadge } from '../common/StatusBadge';
 import { WaterSafetyBadge } from '../common/WaterSafetyBadge';
+import { CampusFixIcon } from '../common/CampusFixLogo';
 import {
   getAllUsers,
   updateUserAccountStatus,
@@ -222,16 +223,21 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       {/* Executive Header Banner */}
       <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-white shadow-xs">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <div className="inline-block px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 mb-2 uppercase tracking-wider">
-              CENTRAL ADMINISTRATION · GOVERNANCE DESK
+          <div className="flex items-start gap-3.5">
+            <div className="p-2 rounded-xl bg-slate-800/90 border border-slate-700/80 shadow-xs flex items-center justify-center shrink-0">
+              <CampusFixIcon sizePx={38} />
             </div>
-            <h1 className="text-2xl font-bold tracking-tight text-white">
-              Estate Directorate Executive Operations
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-xl mt-1">
-              Multi-factor campus maintenance prioritization, work order triage, duplicate linking, and staff oversight.
-            </p>
+            <div>
+              <div className="inline-block px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-sky-500/10 text-sky-300 border border-sky-500/30 mb-2 uppercase tracking-wider">
+                CENTRAL ADMINISTRATION · GOVERNANCE DESK
+              </div>
+              <h1 className="text-2xl font-bold tracking-tight text-white">
+                Estate Directorate Executive Operations
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-xl mt-1">
+                Multi-factor campus maintenance prioritization, work order triage, duplicate linking, and staff oversight.
+              </p>
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-2.5">

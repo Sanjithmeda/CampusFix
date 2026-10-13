@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <!-- Main 'C' Gradient: Rich Royal Blue to Electric Sky Cyan -->
+    <linearGradient id="cf-c-grad" x1="15%" y1="90%" x2="90%" y2="15%">
+      <stop offset="0%" stop-color="#1d4ed8" />
+      <stop offset="35%" stop-color="#2563eb" />
+      <stop offset="70%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+
+    <!-- Wrench Gradient -->
+    <linearGradient id="cf-wrench-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="60%" stop-color="#0ea5e9" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+
+    <!-- Spark Rays Gradient -->
+    <linearGradient id="cf-spark-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+  </defs>
+
+  <!-- 3 Radiating Dynamic Action Sparks at Top-Right -->
+  <!-- Top ray -->
+  <line x1="68" y1="21" x2="71" y2="12" stroke="url(#cf-spark-grad)" stroke-width="4.5" stroke-linecap="round" />
+  <!-- Center ray -->
+  <line x1="75" y1="28" x2="84" y2="23" stroke="url(#cf-spark-grad)" stroke-width="4.5" stroke-linecap="round" />
+  <!-- Bottom ray -->
+  <line x1="77" y1="37" x2="86" y2="39" stroke="url(#cf-spark-grad)" stroke-width="4.5" stroke-linecap="round" />
+
+  <!-- Bold Circular 'C' Body -->
+  <!-- Center at (46, 52), radius 26, from 38° to 322° -->
+  <path
+    d="M 66.5 36 A 26 26 0 1 0 66.5 68"
+    stroke="url(#cf-c-grad)"
+    stroke-width="16"
+    stroke-linecap="round"
+    fill="none"
+  />
+
+  <!-- Angled Wrench in the Center Void (angled at 45 deg, pointing into opening) -->
+  <g transform="translate(46, 52) rotate(45)">
+    <path
+      d="M -3.2 13 C -3.2 15 -1.5 16 0 16 C 1.5 16 3.2 15 3.2 13 L 3.2 -1 C 5.5 -2.2 7.2 -4.6 7.2 -7.5 C 7.2 -9.2 6.5 -10.8 5.5 -12 L 3 -8 L -3 -8 L -5.5 -12 C -6.5 -10.8 -7.2 -9.2 -7.2 -7.5 C -7.2 -4.6 -5.5 -2.2 -3.2 -1 Z"
+      fill="url(#cf-wrench-grad)"
+    />
+  </g>
+</svg>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Clock, ShieldAlert, XCircle, RefreshCw, LogOut, Mail, Building } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { CampusFixLogo } from '../common/CampusFixLogo';
 
 export const AccountStatusScreen: React.FC = () => {
   const { userProfile, logout, refreshUserProfile } = useAuth();
@@ -19,6 +20,11 @@ export const AccountStatusScreen: React.FC = () => {
       <div className="max-w-md w-full bg-white rounded-2xl shadow-xs p-8 border border-slate-200 text-center relative overflow-hidden">
         {/* Top Decorative accent */}
         <div className="absolute top-0 left-0 right-0 h-1.5 bg-indigo-600"></div>
+
+        {/* Brand Logo */}
+        <div className="flex justify-center mb-6">
+          <CampusFixLogo variant="horizontal" size="md" />
+        </div>
 
         {status === 'pending_approval' && (
           <>

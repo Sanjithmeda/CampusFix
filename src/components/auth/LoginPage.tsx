@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { useAuth, DEMO_PROFILES } from '../../context/AuthContext';
 import { UserRole } from '../../types';
+import { CampusFixLogo } from '../common/CampusFixLogo';
 
 interface LoginPageProps {
   onNavigateToRegister: () => void;
@@ -86,11 +87,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigateToRegister }) =>
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         {/* Brand Header */}
         <div className="flex flex-col items-center text-center">
-          <div className="w-12 h-12 rounded-2xl bg-indigo-600 shadow-sm shadow-indigo-600/30 mb-3 flex items-center justify-center text-white">
-            <Wrench className="w-6 h-6" />
-          </div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">CampusFix</h1>
-          <p className="mt-1 text-xs font-semibold text-indigo-700">
+          <CampusFixLogo variant="stacked" size="xl" className="mb-2" />
+          <p className="mt-1 text-xs font-semibold text-sky-700">
             Intelligent Campus Maintenance & Resolution System
           </p>
           <p className="text-xs text-slate-500 mt-1 max-w-xs">

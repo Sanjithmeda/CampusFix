@@ -17,6 +17,7 @@ import { Announcement, Complaint, MaintenanceTeam } from '../../types';
 import { StatusBadge, PriorityBadge } from '../common/StatusBadge';
 import { WaterSafetyBadge } from '../common/WaterSafetyBadge';
 import { useAuth } from '../../context/AuthContext';
+import { CampusFixIcon } from '../common/CampusFixLogo';
 
 interface MaintenanceDashboardProps {
   activeTab: string;
@@ -74,16 +75,21 @@ export const MaintenanceDashboard: React.FC<MaintenanceDashboardProps> = ({
       {/* Header Banner */}
       <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-white shadow-xs">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <div className="inline-block px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 mb-2 uppercase tracking-wider">
-              OPERATIONS DESK · MAINTENANCE CREW
+          <div className="flex items-start gap-3.5">
+            <div className="p-2 rounded-xl bg-slate-800/90 border border-slate-700/80 shadow-xs flex items-center justify-center shrink-0">
+              <CampusFixIcon sizePx={38} />
             </div>
-            <h1 className="text-2xl font-bold tracking-tight text-white">
-              Maintenance Field Queue
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-xl mt-1">
-              Active dispatch list, SLA response tracking, on-site diagnostics, and resolution records.
-            </p>
+            <div>
+              <div className="inline-block px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-sky-500/10 text-sky-300 border border-sky-500/30 mb-2 uppercase tracking-wider">
+                OPERATIONS DESK · MAINTENANCE CREW
+              </div>
+              <h1 className="text-2xl font-bold tracking-tight text-white">
+                Maintenance Field Queue
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-xl mt-1">
+                Active dispatch list, SLA response tracking, on-site diagnostics, and resolution records.
+              </p>
+            </div>
           </div>
           <button
             onClick={onOpenAnnouncementModal}

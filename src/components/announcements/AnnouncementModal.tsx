@@ -3,6 +3,7 @@ import { X, Radio, Calendar, MapPin, Navigation, CheckCircle2 } from 'lucide-rea
 import { Announcement, AnnouncementStatus, CampusArea } from '../../types';
 import { createAnnouncement } from '../../services/announcementService';
 import { useAuth } from '../../context/AuthContext';
+import { CampusFixIcon } from '../common/CampusFixLogo';
 
 interface AnnouncementModalProps {
   isOpen: boolean;
@@ -70,10 +71,8 @@ export const AnnouncementModal: React.FC<AnnouncementModalProps> = ({
     <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
       <div className="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden my-6">
         <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-slate-200 text-slate-900">
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-lg border border-indigo-200/80">
-              <Radio className="w-4 h-4" />
-            </div>
+          <div className="flex items-center gap-3">
+            <CampusFixIcon sizePx={28} />
             <h2 className="text-base font-bold text-slate-900">Publish Maintenance Activity Broadcast</h2>
           </div>
           <button

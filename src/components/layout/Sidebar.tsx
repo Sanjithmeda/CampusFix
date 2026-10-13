@@ -14,6 +14,7 @@ import {
   X
 } from 'lucide-react';
 import { UserRole } from '../../types';
+import { CampusFixLogo } from '../common/CampusFixLogo';
 
 interface SidebarProps {
   activeTab: string;
@@ -91,12 +92,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   const content = (
     <div className="flex flex-col h-full bg-white border-r border-slate-200/80 text-slate-700 w-64 select-none">
-      {/* Mobile close button */}
-      <div className="md:hidden flex items-center justify-between p-4 border-b border-slate-100">
-        <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Navigation Menu</span>
+      {/* Mobile close button with Brand Logo */}
+      <div className="md:hidden flex items-center justify-between p-3.5 border-b border-slate-100">
+        <CampusFixLogo variant="horizontal" size="sm" />
         <button
           onClick={onCloseMobile}
           className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100"
+          aria-label="Close menu"
         >
           <X className="w-5 h-5" />
         </button>

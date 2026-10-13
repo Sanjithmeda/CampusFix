@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { UserRole } from '../../types';
+import { CampusFixLogo } from '../common/CampusFixLogo';
 
 interface RegisterPageProps {
   onNavigateToLogin: () => void;
@@ -85,10 +86,8 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({ onNavigateToLogin })
       <div className="sm:mx-auto sm:w-full sm:max-w-xl">
         {/* Header */}
         <div className="flex flex-col items-center text-center">
-          <div className="w-12 h-12 rounded-2xl bg-indigo-600 shadow-sm shadow-indigo-600/30 mb-3 flex items-center justify-center text-white">
-            <Wrench className="w-6 h-6" />
-          </div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">Create Campus Account</h1>
+          <CampusFixLogo variant="stacked" size="lg" className="mb-2" />
+          <h1 className="text-xl font-bold tracking-tight text-slate-900">Create Campus Account</h1>
           <p className="mt-1 text-xs text-slate-500">
             Register your institutional profile on the CampusFix Portal
           </p>

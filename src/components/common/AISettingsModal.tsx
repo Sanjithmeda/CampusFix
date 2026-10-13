@@ -23,6 +23,7 @@ import {
   fetchAIPrioritization
 } from '../../utils/prioritization';
 import { PriorityBadge } from './StatusBadge';
+import { CampusFixIcon } from './CampusFixLogo';
 
 interface AISettingsModalProps {
   isOpen: boolean;
@@ -135,10 +136,8 @@ export const AISettingsModal: React.FC<AISettingsModalProps> = ({ isOpen, onClos
       <div className="bg-white rounded-2xl max-w-2xl w-full shadow-2xl border border-slate-200 overflow-hidden my-6">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-slate-200 text-slate-900">
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-lg border border-indigo-200/80">
-              <Zap className="w-5 h-5" />
-            </div>
+          <div className="flex items-center gap-3">
+            <CampusFixIcon sizePx={32} />
             <div>
               <h2 className="text-base sm:text-lg font-bold text-slate-900">AI Prioritization Engine Configuration</h2>
               <p className="text-xs text-slate-500">

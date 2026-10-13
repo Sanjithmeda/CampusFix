@@ -43,6 +43,7 @@ import {
   linkComplaintDuplicates
 } from '../../services/complaintService';
 import { useAuth } from '../../context/AuthContext';
+import { CampusFixIcon } from '../common/CampusFixLogo';
 
 interface ComplaintDetailModalProps {
   complaint: Complaint | null;
@@ -260,6 +261,7 @@ export const ComplaintDetailModal: React.FC<ComplaintDetailModalProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-slate-200 text-slate-900">
           <div className="flex items-center gap-2.5">
+            <CampusFixIcon sizePx={28} />
             <span className="font-mono text-xs px-2.5 py-1 bg-indigo-50 border border-indigo-200/80 text-indigo-700 font-semibold rounded-md">
               {complaint.complaintNumber}
             </span>

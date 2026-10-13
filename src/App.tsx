@@ -17,6 +17,7 @@ import { SubmitComplaintModal } from './components/complaints/SubmitComplaintMod
 import { ComplaintDetailModal } from './components/complaints/ComplaintDetailModal';
 import { AnnouncementModal } from './components/announcements/AnnouncementModal';
 import { AISettingsModal } from './components/common/AISettingsModal';
+import { CampusFixLogo } from './components/common/CampusFixLogo';
 import {
   CampusArea,
   Category,
@@ -32,7 +33,6 @@ import {
   getMaintenanceTeams,
   initializeMasterData
 } from './services/masterDataService';
-import { Wrench } from 'lucide-react';
 
 const MainAppContent: React.FC = () => {
   const { currentUser, userProfile, loading, isDemoMode } = useAuth();
@@ -111,11 +111,8 @@ const MainAppContent: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center text-slate-900 p-4">
-        <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-200/80 flex items-center justify-center mb-3">
-          <Wrench className="w-6 h-6 text-indigo-600 animate-spin" />
-        </div>
-        <div className="text-lg font-bold tracking-tight text-slate-900 mb-0.5">CampusFix</div>
-        <p className="text-xs text-slate-500">Initializing campus maintenance workspace...</p>
+        <CampusFixLogo variant="stacked" size="xl" className="animate-pulse mb-3" />
+        <p className="text-xs text-slate-500 font-medium animate-pulse">Initializing campus maintenance workspace...</p>
       </div>
     );
   }
