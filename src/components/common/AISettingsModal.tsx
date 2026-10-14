@@ -132,29 +132,29 @@ export const AISettingsModal: React.FC<AISettingsModalProps> = ({ isOpen, onClos
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-      <div className="bg-white rounded-2xl max-w-2xl w-full shadow-2xl border border-slate-200 overflow-hidden my-6">
+    <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+      <div className="bg-white rounded-2xl max-w-2xl w-full shadow-2xl border border-slate-200 overflow-hidden my-2 sm:my-6">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-slate-200 text-slate-900">
-          <div className="flex items-center gap-3">
-            <CampusFixIcon sizePx={32} />
-            <div>
-              <h2 className="text-base sm:text-lg font-bold text-slate-900">AI Prioritization Engine Configuration</h2>
-              <p className="text-xs text-slate-500">
+        <div className="flex items-center justify-between px-3.5 sm:px-6 py-3 sm:py-4 bg-white border-b border-slate-200 text-slate-900 gap-2">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <CampusFixIcon sizePx={28} className="shrink-0" />
+            <div className="min-w-0">
+              <h2 className="text-sm sm:text-base font-bold text-slate-900 truncate">AI Prioritization Engine</h2>
+              <p className="text-[10px] sm:text-xs text-slate-500 truncate">
                 Configure OpenAI API, Google Gemini, or intelligent campus heuristics
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition"
+            className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition shrink-0"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content Body */}
-        <div className="p-6 space-y-6 max-h-[75vh] overflow-y-auto text-slate-800">
+        <div className="p-3.5 sm:p-6 space-y-5 max-h-[75vh] overflow-y-auto text-slate-800">
           {/* Provider Selection */}
           <div>
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">

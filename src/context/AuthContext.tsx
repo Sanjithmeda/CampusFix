@@ -210,6 +210,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       let msg = err.message || 'Google sign-in could not be completed.';
       if (err.code === 'auth/popup-closed-by-user') {
         msg = 'Google sign-in was cancelled.';
+      } else if (
+        err.code === 'auth/unauthorized-domain' ||
+        (err.message && err.message.includes('unauthorized-domain'))
+      ) {
+        const domain = typeof window !== 'undefined' ? window.location.hostname : 'your deployed domain';
+        msg = `Firebase Error: "${domain}" is not an authorized domain. Please add "${domain}" in Firebase Console > Authentication > Settings > Authorized domains. You can also sign in using Email & Password or the Quick Demo buttons below.`;
       }
       setError(msg);
       throw new Error(msg);

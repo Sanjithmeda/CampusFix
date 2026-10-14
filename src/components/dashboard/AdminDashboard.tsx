@@ -220,87 +220,84 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
   return (
     <div className="space-y-6">
-      {/* Executive Header Banner */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-white shadow-xs">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-start gap-3.5">
-            <div className="p-2 rounded-xl bg-slate-800/90 border border-slate-700/80 shadow-xs flex items-center justify-center shrink-0">
-              <CampusFixIcon sizePx={38} />
-            </div>
-            <div>
-              <div className="inline-block px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-sky-500/10 text-sky-300 border border-sky-500/30 mb-2 uppercase tracking-wider">
-                CENTRAL ADMINISTRATION · GOVERNANCE DESK
-              </div>
-              <h1 className="text-2xl font-bold tracking-tight text-white">
-                Estate Directorate Executive Operations
-              </h1>
-              <p className="text-xs sm:text-sm text-slate-300 max-w-xl mt-1">
-                Multi-factor campus maintenance prioritization, work order triage, duplicate linking, and staff oversight.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap gap-2.5">
-            {onOpenAISettings && (
-              <button
-                onClick={onOpenAISettings}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition shadow-xs"
-                title="Configure OpenAI API / Gemini Prioritization Engine"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-indigo-200" />
-                AI Prioritization Engine
-              </button>
-            )}
-
-            <button
-              onClick={handleSeedDemo}
-              disabled={seeding}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium text-xs transition shadow-xs"
-              title="Populates realistic sample complaints across campus for demonstration"
-            >
-              <Database className="w-3.5 h-3.5 text-indigo-400" />
-              {seeding ? 'Seeding...' : seedSuccess ? 'Demo Data Seeded!' : 'Seed Demo Data'}
-            </button>
-
-            <button
-              onClick={handleExportCSV}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium text-xs transition shadow-xs"
-            >
-              <Download className="w-3.5 h-3.5" />
-              Export CSV
-            </button>
-          </div>
+      {/* Page Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-slate-200/80">
+        <div>
+          <h1 className="text-xl font-bold tracking-tight text-slate-900">
+            {activeTab === 'users'
+              ? 'User Approvals & Directory'
+              : activeTab === 'master_data'
+              ? 'Campus Areas & Categories'
+              : activeTab === 'announcements'
+              ? 'Maintenance Broadcasts'
+              : activeTab === 'analytics'
+              ? 'Workload Analytics & Reports'
+              : activeTab === 'water_alerts'
+              ? 'Water Emergency Desk'
+              : 'Estate Maintenance Operations'}
+          </h1>
+          <p className="text-xs text-slate-500 mt-0.5">
+            Campus facilities oversight, multi-factor prioritization, and work order governance
+          </p>
         </div>
 
-        {/* 6 Real-time Calculated KPI Badges */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mt-6 pt-5 border-t border-slate-800">
-          <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700/60">
-            <span className="text-[10px] text-slate-400 block font-semibold uppercase tracking-wider">Total Complaints</span>
-            <span className="text-xl font-bold text-white mt-0.5 block">{totalCount}</span>
-          </div>
-          <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700/60">
-            <span className="text-[10px] text-slate-400 block font-semibold uppercase tracking-wider">Pending Triage</span>
-            <span className="text-xl font-bold text-sky-400 mt-0.5 block">{pendingTriageCount}</span>
-          </div>
-          <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700/60">
-            <span className="text-[10px] text-slate-400 block font-semibold uppercase tracking-wider">Critical Priority</span>
-            <span className="text-xl font-bold text-rose-400 mt-0.5 block">{criticalCount}</span>
-          </div>
-          <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700/60">
-            <span className="text-[10px] text-slate-400 block font-semibold uppercase tracking-wider">Overdue Cases</span>
-            <span className="text-xl font-bold text-amber-400 mt-0.5 block">{overdueCount}</span>
-          </div>
-          <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700/60">
-            <span className="text-[10px] text-slate-400 block font-semibold uppercase tracking-wider">Resolved & Closed</span>
-            <span className="text-xl font-bold text-emerald-400 mt-0.5 block">{resolvedCount}</span>
-          </div>
-          <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700/60">
-            <span className="text-[10px] text-rose-300 block font-semibold uppercase tracking-wider flex items-center gap-1">
-              <Droplets className="w-3 h-3 text-rose-400" />
-              Water Alerts
-            </span>
-            <span className="text-xl font-bold text-rose-400 mt-0.5 block">{waterEmergencyCount}</span>
-          </div>
+        <div className="flex flex-wrap items-center gap-2">
+          {onOpenAISettings && (
+            <button
+              onClick={onOpenAISettings}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200/80 font-semibold text-xs transition shadow-xs"
+              title="Configure OpenAI / Gemini Prioritization Engine"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              AI Engine
+            </button>
+          )}
+
+          <button
+            onClick={handleSeedDemo}
+            disabled={seeding}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-medium text-xs transition shadow-xs"
+            title="Populates realistic sample complaints across campus for demonstration"
+          >
+            <Database className="w-3.5 h-3.5 text-slate-500" />
+            {seeding ? 'Seeding...' : seedSuccess ? 'Demo Seeded!' : 'Seed Demo'}
+          </button>
+
+          <button
+            onClick={handleExportCSV}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-medium text-xs transition shadow-xs"
+          >
+            <Download className="w-3.5 h-3.5 text-slate-500" />
+            Export CSV
+          </button>
+        </div>
+      </div>
+
+      {/* 6 Clean KPI Metric Cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div className="bg-white rounded-xl p-3 border border-slate-200/80 shadow-xs">
+          <span className="text-[11px] text-slate-500 font-medium block">Total Complaints</span>
+          <span className="text-lg font-bold text-slate-900 mt-0.5 block">{totalCount}</span>
+        </div>
+        <div className="bg-white rounded-xl p-3 border border-slate-200/80 shadow-xs">
+          <span className="text-[11px] text-slate-500 font-medium block">Pending Triage</span>
+          <span className="text-lg font-bold text-blue-600 mt-0.5 block">{pendingTriageCount}</span>
+        </div>
+        <div className="bg-white rounded-xl p-3 border border-slate-200/80 shadow-xs">
+          <span className="text-[11px] text-slate-500 font-medium block">Critical Priority</span>
+          <span className="text-lg font-bold text-rose-600 mt-0.5 block">{criticalCount}</span>
+        </div>
+        <div className="bg-white rounded-xl p-3 border border-slate-200/80 shadow-xs">
+          <span className="text-[11px] text-slate-500 font-medium block">Overdue Cases</span>
+          <span className="text-lg font-bold text-amber-600 mt-0.5 block">{overdueCount}</span>
+        </div>
+        <div className="bg-white rounded-xl p-3 border border-slate-200/80 shadow-xs">
+          <span className="text-[11px] text-slate-500 font-medium block">Resolved</span>
+          <span className="text-lg font-bold text-emerald-600 mt-0.5 block">{resolvedCount}</span>
+        </div>
+        <div className="bg-white rounded-xl p-3 border border-slate-200/80 shadow-xs">
+          <span className="text-[11px] text-slate-500 font-medium block">Water Alerts</span>
+          <span className="text-lg font-bold text-rose-600 mt-0.5 block">{waterEmergencyCount}</span>
         </div>
       </div>
 
@@ -644,121 +641,114 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
       {/* VIEW: COMPLAINT QUEUE / TRIAGE / WATER ALERTS */}
       {(activeTab === 'overview' || activeTab === 'complaints' || activeTab === 'water_alerts') && (
-        <div className="space-y-4">
-          {/* Filters Bar */}
-          <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-xs space-y-3">
-            <div className="flex flex-col sm:flex-row gap-3">
-              <div className="relative flex-1">
-                <Search className="w-4 h-4 absolute left-3 top-3 text-slate-400" />
-                <input
-                  type="text"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Filter queue by ID, summary, reporter, location..."
-                  className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-              </div>
+        <div className="space-y-3 pt-1">
+          {/* Compact Filters Toolbar */}
+          <div className="bg-white p-2.5 rounded-xl border border-slate-200/80 shadow-xs flex flex-col md:flex-row gap-2 items-stretch md:items-center">
+            <div className="relative flex-1 min-w-0">
+              <Search className="w-3.5 h-3.5 absolute left-3 top-2.5 text-slate-400" />
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search ID, summary, reporter, location..."
+                className="w-full pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
 
-              <div className="flex flex-wrap items-center gap-2">
-                <select
-                  value={statusFilter}
-                  onChange={(e) => setStatusFilter(e.target.value)}
-                  className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
-                  <option value="all">All Statuses</option>
-                  <option value="submitted">Submitted</option>
-                  <option value="under_review">Under Review</option>
-                  <option value="assigned">Assigned</option>
-                  <option value="in_progress">In Progress</option>
-                  <option value="resolved">Resolved</option>
-                  <option value="closed">Closed</option>
-                  <option value="reopened">Reopened</option>
-                </select>
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-1.5 w-full md:w-auto">
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full sm:w-auto"
+              >
+                <option value="all">All Statuses</option>
+                <option value="submitted">Submitted</option>
+                <option value="under_review">Under Review</option>
+                <option value="assigned">Assigned</option>
+                <option value="in_progress">In Progress</option>
+                <option value="resolved">Resolved</option>
+                <option value="closed">Closed</option>
+                <option value="reopened">Reopened</option>
+              </select>
 
-                <select
-                  value={priorityFilter}
-                  onChange={(e) => setPriorityFilter(e.target.value)}
-                  className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
-                  <option value="all">All Priorities</option>
-                  <option value="critical">Critical</option>
-                  <option value="high">High</option>
-                  <option value="medium">Medium</option>
-                  <option value="low">Low</option>
-                </select>
+              <select
+                value={priorityFilter}
+                onChange={(e) => setPriorityFilter(e.target.value)}
+                className="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full sm:w-auto"
+              >
+                <option value="all">All Priorities</option>
+                <option value="critical">Critical</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
 
-                <select
-                  value={areaFilter}
-                  onChange={(e) => setAreaFilter(e.target.value)}
-                  className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
-                  <option value="all">All Campus Areas</option>
-                  {campusAreas.map((a) => (
-                    <option key={a.id} value={a.name}>
-                      {a.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <select
+                value={areaFilter}
+                onChange={(e) => setAreaFilter(e.target.value)}
+                className="col-span-2 sm:col-span-1 px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full sm:w-auto sm:max-w-[140px] truncate"
+              >
+                <option value="all">All Areas</option>
+                {campusAreas.map((a) => (
+                  <option key={a.id} value={a.name}>
+                    {a.name}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 
-          {/* Table / Cards */}
+          {/* Complaint Queue Cards */}
           {filteredComplaints.length === 0 ? (
-            <div className="bg-white rounded-xl p-12 text-center border border-slate-200 shadow-xs">
-              <FolderTree className="w-8 h-8 text-slate-400 mx-auto mb-2" />
-              <h3 className="font-bold text-slate-800 text-sm">No complaints in this queue view</h3>
-              <p className="text-xs text-slate-500 mt-1">Adjust search parameters or filters above.</p>
+            <div className="bg-white rounded-xl p-10 text-center border border-slate-200/80 shadow-xs">
+              <FolderTree className="w-8 h-8 text-slate-300 mx-auto mb-2" />
+              <h3 className="font-semibold text-slate-800 text-sm">No complaints in this queue view</h3>
+              <p className="text-xs text-slate-500 mt-0.5">Adjust search parameters or filters above.</p>
             </div>
           ) : (
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               {filteredComplaints.map((comp) => (
                 <div
                   key={comp.id}
                   onClick={() => onSelectComplaint(comp)}
-                  className="bg-white rounded-xl p-4 sm:p-5 border border-slate-200 hover:border-indigo-400 shadow-xs hover:shadow-md transition cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4 group"
+                  className="bg-white rounded-xl p-3.5 sm:p-4 border border-slate-200/80 hover:border-blue-400 shadow-xs hover:shadow-sm transition cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-3 group"
                 >
                   <div className="space-y-1.5 flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-mono text-xs font-semibold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded-md border border-indigo-200/60">
+                      <span className="font-mono text-xs font-bold text-slate-800">
                         {comp.complaintNumber}
                       </span>
                       <StatusBadge status={comp.status} size="sm" />
                       <PriorityBadge priority={comp.priority} score={comp.priorityScore} size="sm" />
                       {comp.suspectedContamination && (
-                        <span className="px-2 py-0.5 bg-rose-600 text-white text-[10px] font-bold rounded-md">
-                          WATER CONTAMINATION ALERT
+                        <span className="px-1.5 py-0.5 bg-rose-50 text-rose-700 border border-rose-200 text-[10px] font-semibold rounded">
+                          Water Contamination
                         </span>
                       )}
                       {comp.linkedComplaintIds && comp.linkedComplaintIds.length > 0 && (
-                        <span className="px-2 py-0.5 bg-amber-50 text-amber-800 text-[10px] font-semibold rounded-md border border-amber-200">
+                        <span className="px-1.5 py-0.5 bg-amber-50 text-amber-800 text-[10px] font-semibold rounded border border-amber-200">
                           {comp.linkedComplaintIds.length} Linked Duplicates
                         </span>
                       )}
                     </div>
 
-                    <h3 className="font-bold text-slate-900 text-sm group-hover:text-indigo-600 transition truncate">
+                    <h3 className="font-semibold text-slate-900 text-sm group-hover:text-blue-600 transition truncate">
                       {comp.title}
                     </h3>
 
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500">
-                      <span className="flex items-center gap-1 font-medium text-slate-700">
-                        <MapPin className="w-3.5 h-3.5 text-indigo-600" />
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-slate-500">
+                      <span className="text-slate-600 font-medium">
                         {comp.campusArea} · {comp.specificLocation}
                       </span>
-                      <span>Reporter: <strong>{comp.reporterName}</strong></span>
-                      <span>Assigned: <strong>{comp.assignedTeamName || 'Unassigned'}</strong></span>
-                      <span>Impact: <strong>{comp.affectedPeople} occupants</strong></span>
-                    </div>
-
-                    <div className="text-[11px] text-slate-600 bg-slate-50 p-2 rounded-lg border border-slate-100 truncate">
-                      <strong className="text-slate-800">Priority logic:</strong> {comp.priorityReason}
+                      <span>Reporter: <strong className="text-slate-600">{comp.reporterName}</strong></span>
+                      <span>Assigned: <strong className="text-slate-600">{comp.assignedTeamName || 'Unassigned'}</strong></span>
+                      <span>Impact: <strong className="text-slate-600">{comp.affectedPeople}</strong></span>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between md:justify-end gap-3 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-slate-100">
                     <div className="text-right text-xs">
-                      <div className="text-[10px] text-slate-400">Created</div>
+                      <div className="text-[10px] text-slate-400">Reported</div>
                       <div className="text-slate-700 font-medium">
                         {new Date(comp.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric' })}
                       </div>
@@ -768,7 +758,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                         e.stopPropagation();
                         onSelectComplaint(comp);
                       }}
-                      className="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold shadow-xs transition"
+                      className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold shadow-xs transition"
                     >
                       Review & Triage
                     </button>

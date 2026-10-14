@@ -82,7 +82,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({ onNavigateToLogin })
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-8 sm:py-12 px-3 sm:px-6 lg:px-8 w-full max-w-full overflow-x-hidden">
       <div className="sm:mx-auto sm:w-full sm:max-w-xl">
         {/* Header */}
         <div className="flex flex-col items-center text-center">
@@ -94,7 +94,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({ onNavigateToLogin })
         </div>
 
         {/* Card */}
-        <div className="mt-6 bg-white py-8 px-6 shadow-xs rounded-2xl border border-slate-200 sm:px-10">
+        <div className="mt-6 bg-white py-6 sm:py-8 px-4 sm:px-10 shadow-xs rounded-2xl border border-slate-200">
           {error && (
             <div className="mb-5 p-3.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs flex items-start gap-2.5">
               <AlertCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />

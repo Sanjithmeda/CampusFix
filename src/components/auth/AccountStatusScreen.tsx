@@ -16,8 +16,8 @@ export const AccountStatusScreen: React.FC = () => {
   const status = userProfile?.status || 'pending_approval';
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-xs p-8 border border-slate-200 text-center relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-3 sm:p-4 w-full max-w-full overflow-x-hidden">
+      <div className="max-w-md w-full bg-white rounded-2xl shadow-xs p-5 sm:p-8 border border-slate-200 text-center relative overflow-hidden">
         {/* Top Decorative accent */}
         <div className="absolute top-0 left-0 right-0 h-1.5 bg-indigo-600"></div>
 

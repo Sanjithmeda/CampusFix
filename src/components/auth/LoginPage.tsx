@@ -13,7 +13,10 @@ import {
   Briefcase,
   GraduationCap,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Copy,
+  Check,
+  ExternalLink
 } from 'lucide-react';
 import { useAuth, DEMO_PROFILES } from '../../context/AuthContext';
 import { UserRole } from '../../types';
@@ -31,6 +34,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigateToRegister }) =>
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
+  const [copiedDomain, setCopiedDomain] = useState(false);
 
   // Forgot password modal state
   const [showForgotModal, setShowForgotModal] = useState(false);
@@ -82,7 +86,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigateToRegister }) =>
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-8 sm:py-12 px-3 sm:px-6 lg:px-8 w-full max-w-full overflow-x-hidden">
       {/* Container */}
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         {/* Brand Header */}
@@ -97,13 +101,86 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigateToRegister }) =>
         </div>
 
         {/* Login Card */}
-        <div className="mt-7 bg-white py-8 px-6 shadow-xs rounded-2xl border border-slate-200 sm:px-10">
-          {(localError || authError) && (
-            <div className="mb-5 p-3.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs flex items-start gap-2.5">
-              <AlertCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
-              <span>{localError || authError}</span>
-            </div>
-          )}
+        <div className="mt-6 bg-white py-6 sm:py-8 px-4 sm:px-10 shadow-xs rounded-2xl border border-slate-200">
+          {(localError || authError) && (() => {
+            const errText = localError || authError || '';
+            const isDomainError =
+              errText.toLowerCase().includes('unauthorized-domain') ||
+              errText.toLowerCase().includes('authorized domain');
+
+            if (isDomainError) {
+              const currentHostname = typeof window !== 'undefined' ? window.location.hostname : 'your-domain.vercel.app';
+              return (
+                <div className="mb-5 p-4 bg-amber-50 border border-amber-300 rounded-xl text-amber-950 text-xs space-y-2.5">
+                  <div className="flex items-start gap-2">
+                    <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="font-bold text-amber-900 block text-xs">
+                        Deployment Domain Not Authorized in Firebase
+                      </strong>
+                      <p className="text-[11px] text-amber-800 mt-0.5 leading-relaxed">
+                        Firebase blocks Google Sign-In popups on newly deployed domains (such as Vercel) until the domain is added to your project's allowlist.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-2.5 rounded-lg border border-amber-200 space-y-1.5">
+                    <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider block">
+                      Domain to authorize:
+                    </span>
+                    <div className="flex items-center justify-between gap-2 bg-slate-50 px-2.5 py-1.5 rounded border border-slate-200">
+                      <code className="text-xs font-mono font-semibold text-indigo-700 truncate">
+                        {currentHostname}
+                      </code>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (typeof navigator !== 'undefined') {
+                            navigator.clipboard.writeText(currentHostname);
+                            setCopiedDomain(true);
+                            setTimeout(() => setCopiedDomain(false), 2000);
+                          }
+                        }}
+                        className="px-2 py-0.5 bg-white border border-slate-200 rounded text-[11px] font-medium text-slate-700 hover:bg-slate-100 transition flex items-center gap-1 shrink-0"
+                      >
+                        {copiedDomain ? (
+                          <>
+                            <Check className="w-3 h-3 text-emerald-600" />
+                            <span className="text-emerald-700">Copied!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-3 h-3 text-slate-500" />
+                            <span>Copy Domain</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="text-[11px] text-amber-900 space-y-1 pt-1">
+                    <p className="font-semibold">Quick Fix Steps in Firebase Console:</p>
+                    <ol className="list-decimal pl-4 space-y-0.5 text-[11px] text-amber-800">
+                      <li>Open Firebase Console &rarr; <strong>Authentication</strong> &rarr; <strong>Settings</strong> tab.</li>
+                      <li>Scroll down to <strong>Authorized domains</strong> and click <strong>Add domain</strong>.</li>
+                      <li>Paste <code className="font-mono bg-amber-100 px-1 rounded">{currentHostname}</code> and save.</li>
+                    </ol>
+                  </div>
+
+                  <div className="pt-1 text-[11px] text-slate-600 border-t border-amber-200/80">
+                    <em>Tip:</em> You can also sign in right now with <strong>Email & Password</strong> or use the <strong>Quick Demo</strong> buttons below without configuring domains.
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <div className="mb-5 p-3.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs flex items-start gap-2.5">
+                <AlertCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                <span>{errText}</span>
+              </div>
+            );
+          })()}
 
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div>

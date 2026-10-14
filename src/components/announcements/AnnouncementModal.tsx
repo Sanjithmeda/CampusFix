@@ -68,22 +68,22 @@ export const AnnouncementModal: React.FC<AnnouncementModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-      <div className="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden my-6">
-        <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-slate-200 text-slate-900">
-          <div className="flex items-center gap-3">
-            <CampusFixIcon sizePx={28} />
-            <h2 className="text-base font-bold text-slate-900">Publish Maintenance Activity Broadcast</h2>
+    <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+      <div className="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden my-2 sm:my-6">
+        <div className="flex items-center justify-between px-3.5 sm:px-6 py-3 sm:py-4 bg-white border-b border-slate-200 text-slate-900 gap-2">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <CampusFixIcon sizePx={24} className="shrink-0" />
+            <h2 className="text-sm sm:text-base font-bold text-slate-900 truncate">Publish Maintenance Broadcast</h2>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition"
+            className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition shrink-0"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4 text-slate-800">
+        <form onSubmit={handleSubmit} className="p-3.5 sm:p-6 space-y-4 text-slate-800">
           {error && (
             <div className="p-2.5 bg-rose-50 border border-rose-200 rounded-lg text-rose-700 text-xs">
               {error}
@@ -203,9 +203,9 @@ export const AnnouncementModal: React.FC<AnnouncementModalProps> = ({
             <button
               type="submit"
               disabled={loading}
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold shadow-xs transition"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold shadow-xs transition"
             >
-              {loading ? 'Publishing...' : 'Publish to Campus'}
+              {loading ? 'Publishing...' : 'Publish Announcement'}
             </button>
           </div>
         </form>

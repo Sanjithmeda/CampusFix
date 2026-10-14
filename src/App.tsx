@@ -134,7 +134,7 @@ const MainAppContent: React.FC = () => {
   const waterAlertCount = complaints.filter(c => c.suspectedContamination).length;
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-50 flex flex-col font-sans w-full max-w-full overflow-x-hidden">
       {/* Top Navigation */}
       <Navbar
         onSelectComplaint={handleSelectComplaintById}
@@ -143,7 +143,7 @@ const MainAppContent: React.FC = () => {
       />
 
       {/* Main Layout Area */}
-      <div className="flex-1 flex max-w-7xl w-full mx-auto">
+      <div className="flex-1 flex max-w-7xl w-full mx-auto overflow-x-hidden">
         {/* Sidebar */}
         <Sidebar
           activeTab={activeTab}
@@ -156,7 +156,7 @@ const MainAppContent: React.FC = () => {
         />
 
         {/* Dashboard Main Content */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 min-w-0 overflow-y-auto">
+        <main className="flex-1 p-3 sm:p-6 lg:p-8 min-w-0 w-full max-w-full overflow-x-hidden">
           {role === 'admin' && (
             <AdminDashboard
               activeTab={activeTab}

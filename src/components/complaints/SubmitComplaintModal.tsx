@@ -191,37 +191,37 @@ export const SubmitComplaintModal: React.FC<SubmitComplaintModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-2 sm:p-4">
       <div className="bg-white rounded-2xl max-w-2xl w-full shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[92vh]">
         {/* Modal Header */}
-        <div className="px-6 py-4 bg-white border-b border-slate-200 flex items-center justify-between text-slate-900">
-          <div className="flex items-center gap-3">
-            <CampusFixIcon sizePx={32} />
-            <div>
-              <h2 className="text-base font-bold text-slate-900">Report Campus Facility Complaint</h2>
-              <p className="text-[11px] text-slate-500">
-                Log equipment damage, water leak, electrical fault, or sanitary maintenance issue
+        <div className="px-3.5 sm:px-6 py-3 sm:py-4 bg-white border-b border-slate-200 flex items-center justify-between text-slate-900 gap-2">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <CampusFixIcon sizePx={28} className="shrink-0" />
+            <div className="min-w-0">
+              <h2 className="text-sm sm:text-base font-bold text-slate-900 truncate">Report Campus Facility Issue</h2>
+              <p className="text-[10px] sm:text-[11px] text-slate-500 truncate">
+                Log equipment damage, water leak, electrical fault, or sanitary maintenance
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition"
+            className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition shrink-0"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Priority Preview Banner */}
-        <div className="px-6 py-2.5 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-slate-600">Priority Engine:</span>
-            <PriorityBadge priority={priorityPreview.priority} score={priorityPreview.score} />
+        <div className="px-3.5 sm:px-6 py-2 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="font-semibold text-slate-600 text-xs">Priority:</span>
+            <PriorityBadge priority={priorityPreview.priority} score={priorityPreview.score} size="sm" />
             {onOpenAISettings && (
               <button
                 type="button"
                 onClick={onOpenAISettings}
-                className="ml-2 inline-flex items-center gap-1 text-[11px] font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-2.5 py-0.5 rounded-md border border-indigo-200/80 transition"
+                className="inline-flex items-center gap-1 text-[10px] font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-2 py-0.5 rounded-md border border-indigo-200/80 transition"
                 title="Configure OpenAI / Gemini AI Prioritization Engine"
               >
                 <Zap className="w-3 h-3 text-indigo-600" />
@@ -229,13 +229,13 @@ export const SubmitComplaintModal: React.FC<SubmitComplaintModalProps> = ({
               </button>
             )}
           </div>
-          <div className="text-slate-500 text-[11px] truncate max-w-md">
-            <strong>Factor Rationale:</strong> {priorityPreview.reason}
+          <div className="text-slate-500 text-[10px] sm:text-[11px] truncate max-w-xs sm:max-w-md">
+            <strong>Rationale:</strong> {priorityPreview.reason}
           </div>
         </div>
 
         {/* Modal Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4 max-h-[75vh] overflow-y-auto text-slate-800">
+        <form onSubmit={handleSubmit} className="p-3.5 sm:p-6 space-y-4 max-h-[75vh] overflow-y-auto text-slate-800">
           {error && (
             <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs flex items-start gap-2">
               <AlertTriangle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
@@ -543,17 +543,17 @@ export const SubmitComplaintModal: React.FC<SubmitComplaintModalProps> = ({
             <button
               type="submit"
               disabled={loading}
-              className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg shadow-xs transition disabled:opacity-60 flex items-center gap-2"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow-xs transition disabled:opacity-60 flex items-center gap-2"
             >
               {loading ? (
                 <>
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  Submitting Report...
+                  <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  Submitting...
                 </>
               ) : (
                 <>
-                  <CheckCircle2 className="w-4 h-4" />
-                  Submit Maintenance Complaint
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  Submit Complaint
                 </>
               )}
             </button>
